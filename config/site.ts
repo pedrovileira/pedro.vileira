@@ -3,7 +3,7 @@ export const siteConfig = {
   url: 'https://pedrovileira.com', // ✏️ PEDRO: ALTERE O DOMÍNIO AQUI (usado no SEO e sitemap)
   name: 'PEDRO VILEIRA', // ✏️ PEDRO: ALTERE SEU NOME AQUI
   role: 'DESIGNER / ART DIRECTOR / VISUAL CREATOR', // ✏️ PEDRO: ALTERE SEU CARGO AQUI
-  description: 'Design, direção de arte, branding, fotografia e vídeo. Portfólio de Pedro Vileira.', // ✏️ PEDRO: ALTERE A DESCRIÇÃO (SEO)
+  description: 'Pedro Vileira é designer gráfico e diretor de arte. Conheça seu portfólio de design, branding, identidade visual, fotografia e criação de conteúdo.', // ✏️ PEDRO: ALTERE A DESCRIÇÃO (SEO)
   bio: 'Desenho marcas, campanhas e sistemas visuais. Fotografo e edito o que desenho. Trabalho na distância entre a ideia e a peça final.', // ✏️ PEDRO: ALTERE SUA BIO AQUI
   approach: 'Estratégia, estética, narrativa e execução — nessa ordem, sempre. Penso o projeto inteiro antes de abrir qualquer programa.', // ✏️ PEDRO: ALTERE COMO VOCÊ DESCREVE SEU PROCESSO AQUI
   location: 'SÃO JOSÉ DOS CAMPOS, BR', // ✏️ PEDRO: ALTERE SUA LOCALIZAÇÃO AQUI
