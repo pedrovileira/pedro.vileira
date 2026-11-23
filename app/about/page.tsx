@@ -25,6 +25,14 @@ export const metadata: Metadata = { title: 'Sobre', description: siteConfig.bio 
 
 export default function About() {
   return (
+  <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(profileJsonLd).replace(/</g, '\\u003c')
+      }}
+    />
+
     <section className="page">
       {/* ✏️ PEDRO: ALTERE A FRASE PRINCIPAL AQUI */}
       <ChaosText as="h1" lines={['Ideias que viram realidade.']} className="t-headline" />
