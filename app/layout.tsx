@@ -17,7 +17,7 @@ const font = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-  default: 'Pedro Vileira | Designer e Diretor de Arte',
+  default: 'Pedro Vileira | Designer Gráfico e Diretor de Arte',
   template: `%s | Pedro Vileira`
 },
   description: siteConfig.description,
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://pedrovileira.com/#pedro-vileira",
   "name": "Pedro Vileira",
   "url": "https://pedrovileira.com/",
   "jobTitle": "Designer Gráfico e Diretor de Arte",
@@ -46,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
-    __html: JSON.stringify(personSchema)
+    __html: JSON.stringify(personSchema).replace(/</g, '\\u003c')
   }}
 />
 </head>
