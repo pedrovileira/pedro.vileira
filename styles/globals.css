@@ -115,15 +115,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     color var(--dur-fast) var(--ease),
     transform var(--dur-fast) var(--ease);
 
-  /* Inverte visualmente as cores do fundo */
-  mix-blend-mode: difference;
+  /* Cor sólida por tema, sem inverter as cores do conteúdo atrás */
+  mix-blend-mode: normal;
 }
 
-/* Mantém o cursor independente do tema */
-html[data-theme='light'] .cursor__dot,
-html:not([data-theme='light']) .cursor__dot {
+/* Cursor branco no tema escuro e preto no tema claro */
+.cursor__dot {
   background: #fff;
-  color: #000;
+  color: #060606;
+}
+:root[data-theme='light'] .cursor__dot {
+  background: #060606;
+  color: #fff;
 }
 
 /* Estados especiais */
@@ -146,16 +149,16 @@ html:not([data-theme='light']) .cursor__dot {
   justify-content: space-between;
   align-items: center;
   padding: var(--margin);
-  color: #fff;
+  color: var(--color-text);
   font-size: var(--fs-micro);
   letter-spacing: 0.08em;
   font-weight: 600;
 
   /* Efeito vidro: desfoca o conteúdo que passa por trás da barra */
-  background: rgba(6, 6, 6, 0.48);
+  background: color-mix(in srgb, var(--color-background) 78%, transparent);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid rgba(242, 239, 233, 0.10);
+  border-bottom: 1px solid var(--color-line);
 }
 .nav__links { display: none; gap: var(--sp-3); }
 .nav a[aria-current='page']::after { content: ''; display: inline-block; width: 6px; height: 6px; margin-left: 8px; border-radius: 50%; background: currentColor; }
