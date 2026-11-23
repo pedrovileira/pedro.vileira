@@ -39,7 +39,14 @@ const personSchema = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={font.variable} style={motionVars} suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');try{if(localStorage.getItem('pv-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}" }} /></head>
+      <head>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(personSchema)
+  }}
+/>
+</head>
       <body>
         <a href="#main" className="skip">Skip to content</a>
         <PageTransition>
