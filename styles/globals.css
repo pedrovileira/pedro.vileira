@@ -138,7 +138,25 @@ html:not([data-theme='light']) .cursor__dot {
 
 
 /* ===== NAV / MENU ===== */
-.nav { position: fixed; inset: 0 0 auto 0; z-index: var(--z-nav); display: flex; justify-content: space-between; align-items: center; padding: var(--margin); mix-blend-mode: difference; color: #fff; font-size: var(--fs-micro); letter-spacing: 0.08em; font-weight: 600; }
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-nav);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--margin);
+  color: #fff;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+
+  /* Efeito vidro: desfoca o conteúdo que passa por trás da barra */
+  background: rgba(6, 6, 6, 0.48);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid rgba(242, 239, 233, 0.10);
+}
 .nav__links { display: none; gap: var(--sp-3); }
 .nav a[aria-current='page']::after { content: ''; display: inline-block; width: 6px; height: 6px; margin-left: 8px; border-radius: 50%; background: currentColor; }
 .nav__btn { font-size: inherit; letter-spacing: inherit; font-weight: inherit; }
