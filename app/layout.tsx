@@ -16,7 +16,10 @@ const font = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: { default: `${siteConfig.name} — DESIGNER & ART DIRECTOR`, template: `%s — ${siteConfig.name}` },
+  title: {
+  default: 'Pedro Vileira | Designer e Diretor de Arte',
+  template: `%s | Pedro Vileira`
+},
   description: siteConfig.description,
   openGraph: { title: `${siteConfig.name} — DESIGNER & ART DIRECTOR`, description: siteConfig.description, url: siteConfig.url, siteName: siteConfig.name, images: [siteConfig.ogImage], locale: 'pt_BR', type: 'website' },
   twitter: { card: 'summary_large_image', title: siteConfig.name, description: siteConfig.description, images: [siteConfig.ogImage] },
