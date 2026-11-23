@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { siteConfig, homeBlocks } from '@/config/site';
 import { projects } from '@/data/projects';
 import { ContactHeroTitle, ChaosText } from '@/components/ContactHeroTitle';
@@ -5,10 +6,30 @@ import { ImageReveal } from '@/components/ImageReveal';
 import { TransitionLink } from '@/components/TransitionLink';
 import { HeroStickers } from '@/components/HeroStickers';
 
+export const metadata: Metadata = {
+  title: 'Pedro Vileira | Designer Gráfico e Diretor de Arte',
+  description: siteConfig.description,
+  alternates: { canonical: '/' },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Pedro Vileira",
+  "alternateName": "pedrovileira.com",
+  "url": "https://pedrovileira.com/"
+};
+
 export default function Home() {
   const featured = projects.filter((p) => p.featured);
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema).replace(/</g, '\\u003c'),
+        }}
+      />
       <section className="hero">
         <div className="hero__row t-micro"><span>{siteConfig.role}</span><span>{siteConfig.location}</span><span>2026</span></div>
                 {/* ✏️ PEDRO: ALTERE SEU NOME AQUI (uma string por linha) */}
