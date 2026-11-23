@@ -22,6 +22,20 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: siteConfig.name, description: siteConfig.description, images: [siteConfig.ogImage] },
 };
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Pedro Vileira",
+  "url": "https://pedrovileira.com/",
+  "jobTitle": "Designer Gráfico e Diretor de Arte",
+  "description": "Portfólio de Pedro Vileira, com projetos de design gráfico, branding, direção de arte, fotografia e vídeo.",
+  "sameAs": [
+    "https://instagram.com/pedrovileira.std",
+    "https://www.linkedin.com/in/pedro-vileira-0b10b9441",
+    "https://www.behance.net/pedrovileira"
+  ]
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={font.variable} style={motionVars} suppressHydrationWarning>
