@@ -2,6 +2,25 @@ import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { ChaosText } from '@/components/ContactHeroTitle';
 
+const profileJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://pedrovileira.com/about#pedro-vileira",
+    "name": "Pedro Vileira",
+    "url": "https://pedrovileira.com/",
+    "image": "https://pedrovileira.com/images/home/pedro-01.jpg",
+    "jobTitle": "Designer, Diretor de Arte e Criador Visual",
+    "description": siteConfig.bio,
+    "sameAs": [
+      siteConfig.instagram,
+      siteConfig.linkedin,
+      siteConfig.behance
+    ].filter(Boolean)
+  }
+};
+
 export const metadata: Metadata = { title: 'Sobre', description: siteConfig.bio };
 
 export default function About() {
