@@ -1,9 +1,9 @@
 // ✏️ PEDRO — TODAS AS INFORMAÇÕES DO SITE FICAM AQUI
 export const siteConfig = {
   url: 'https://pedrovileira.com', // ✏️ PEDRO: ALTERE O DOMÍNIO AQUI (usado no SEO e sitemap)
-  name: 'PEDRO VILEIRA', // ✏️ PEDRO: ALTERE SEU NOME AQUI
-  role: 'DESIGNER / ART DIRECTOR / VISUAL CREATOR', // ✏️ PEDRO: ALTERE SEU CARGO AQUI
-  description: 'Pedro Vileira é designer gráfico e diretor de arte. Conheça seu portfólio de design, branding, identidade visual, fotografia e criação de conteúdo.', // ✏️ PEDRO: ALTERE A DESCRIÇÃO (SEO)
+  name: 'Pedro Vileira', // ✏️ PEDRO: ALTERE SEU NOME AQUI
+  role: 'DESIGNER GRÁFICO / DIRETOR DE ARTE', // ✏️ PEDRO: ALTERE SEU CARGO AQUI
+  description: 'Pedro Vileira é designer gráfico e diretor de arte em São José dos Campos, SP. Conheça seu portfólio de identidade visual, branding, direção de arte, fotografia e vídeo.', // ✏️ PEDRO: ALTERE A DESCRIÇÃO (SEO)
   bio: 'Desenho marcas, campanhas e sistemas visuais. Fotografo e edito o que desenho. Trabalho na distância entre a ideia e a peça final.', // ✏️ PEDRO: ALTERE SUA BIO AQUI
   approach: 'Estratégia, estética, narrativa e execução — nessa ordem, sempre. Penso o projeto inteiro antes de abrir qualquer programa.', // ✏️ PEDRO: ALTERE COMO VOCÊ DESCREVE SEU PROCESSO AQUI
   location: 'SÃO JOSÉ DOS CAMPOS, BR', // ✏️ PEDRO: ALTERE SUA LOCALIZAÇÃO AQUI
@@ -53,7 +53,7 @@ export const homeBlocks = [
     alt: 'Retrato de Pedro Vileira',
     label: 'QUEM SOU',
     title: 'Estratégia, estética, narrativa e execução.',
-    text: 'Sou Pedro Vileira. Crio marcas, campanhas e conteúdo — do plano ao enquadramento, do roteiro à peça final. Cada área trabalha a favor da outra para que a ideia chegue inteira ao público.',
+    text: 'Sou Pedro Vileira, designer gráfico e diretor de arte. Crio marcas, campanhas e conteúdo — do plano ao enquadramento, do roteiro à peça final. Cada área trabalha a favor da outra para que a ideia chegue inteira ao público.',
     list: [] as string[],
     link: null as { href: string; label: string } | null
   },
