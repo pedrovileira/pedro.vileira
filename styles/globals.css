@@ -101,7 +101,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-radius: 50%;
 
   background: #fff;
-  color: #000;
+  color: #060606;
 
   display: grid;
   place-content: center;
@@ -115,15 +115,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     color var(--dur-fast) var(--ease),
     transform var(--dur-fast) var(--ease);
 
-  /* Inverte visualmente as cores do fundo */
-  mix-blend-mode: difference;
+  /* Cor sólida por tema, sem inverter as cores do conteúdo atrás */
+  mix-blend-mode: normal;
 }
 
-/* Mantém o cursor independente do tema */
-html[data-theme='light'] .cursor__dot,
-html:not([data-theme='light']) .cursor__dot {
+/* Cursor branco no tema escuro e preto no tema claro */
+:root:not([data-theme='light']) .cursor__dot {
   background: #fff;
-  color: #000;
+  color: #060606;
+}
+:root[data-theme='light'] .cursor__dot {
+  background: #060606;
+  color: #fff;
 }
 
 /* Estados especiais */
@@ -138,7 +141,23 @@ html:not([data-theme='light']) .cursor__dot {
 
 
 /* ===== NAV / MENU ===== */
-.nav { position: fixed; inset: 0 0 auto 0; z-index: var(--z-nav); display: flex; justify-content: space-between; align-items: center; padding: var(--margin); mix-blend-mode: difference; color: #fff; font-size: var(--fs-micro); letter-spacing: 0.08em; font-weight: 600; }
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-nav);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--margin);
+  color: var(--color-text);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--color-background) 68%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--color-line);
+}
 .nav__links { display: none; gap: var(--sp-3); }
 .nav a[aria-current='page']::after { content: ''; display: inline-block; width: 6px; height: 6px; margin-left: 8px; border-radius: 50%; background: currentColor; }
 .nav__btn { font-size: inherit; letter-spacing: inherit; font-weight: inherit; }
@@ -328,6 +347,11 @@ html:not([data-theme='light']) .cursor__dot {
   --color-text: #060606;
   --color-muted: #6b6a66;
   --color-line: rgba(6, 6, 6, 0.2);
+}
+:root[data-theme='light'] .nav {
+  background: rgba(255, 255, 255, 0.72);
+  color: #060606;
+  border-bottom-color: rgba(6, 6, 6, 0.12);
 }
 /* Elementos com cor fixa no tema escuro: no claro, adaptam */
 :root[data-theme='light'] .fallback, :root[data-theme='light'] .wl-preview__in { background: #ececea; }
