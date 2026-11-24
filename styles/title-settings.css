@@ -1,21 +1,21 @@
-/* TODOS OS TÍTULOS — DESKTOP */
-@media (min-width: 768px) {
-  .title-home,
-  .title-home-blocks,
-  .title-about,
-  .title-work,
-  .title-contact,
-  .title-quote,
-  .title-lab,
-  .title-404 {
-    font-size: 12vw !important;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
+/* TODOS OS TÍTULOS — o tamanho final é calculado por /fit-titles.js */
+.title-home,
+.title-home-blocks,
+.title-about,
+.title-work,
+.title-contact,
+.title-quote,
+.title-lab,
+.title-404 {
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-size: 12vw; /* só o valor inicial, antes do JS rodar */
 }
 
-/* TODOS OS TÍTULOS — CELULAR */
 @media (max-width: 767px) {
   .title-home,
   .title-home-blocks,
@@ -25,9 +25,6 @@
   .title-quote,
   .title-lab,
   .title-404 {
-    font-size: 18vw !important;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+    font-size: 18vw; /* só o valor inicial, antes do JS rodar */
   }
 }
