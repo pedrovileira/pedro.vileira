@@ -1,29 +1,4 @@
-/* CONFIGURAÇÕES INDIVIDUAIS */
-.title-home,
-.title-home-blocks,
-.title-about,
-.title-work,
-.title-contact,
-.title-quote,
-.title-lab,
-.title-404 {
-  --title-align: left;
-  --title-max-width: 100%;
-  --title-line-height: 0.9;
-  --title-letter-spacing: -0.045em;
-
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  text-align: var(--title-align);
-  line-height: var(--title-line-height);
-  letter-spacing: var(--title-letter-spacing);
-  margin-inline: auto;
-  overflow-wrap: break-word;
-}
-
-/* DESKTOP */
+/* TODOS OS TÍTULOS — DESKTOP */
 @media (min-width: 768px) {
   .title-home,
   .title-home-blocks,
@@ -33,11 +8,14 @@
   .title-quote,
   .title-lab,
   .title-404 {
-    font-size: clamp(2rem, 8vw, 15rem);
+    font-size: 12vw !important;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 
-/* CELULAR */
+/* TODOS OS TÍTULOS — CELULAR */
 @media (max-width: 767px) {
   .title-home,
   .title-home-blocks,
@@ -47,15 +25,9 @@
   .title-quote,
   .title-lab,
   .title-404 {
-    font-size: clamp(2rem, 13vw, 7rem);
+    font-size: 18vw !important;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
-}
-
-/* IMAGE LAB — preserva as cores */
-.editor-title.title-lab .chaos__ch {
-  color: inherit;
-}
-
-.editor-title.title-lab .tr__line:nth-child(2) .chaos__ch {
-  color: var(--color-muted);
 }
