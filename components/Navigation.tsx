@@ -5,7 +5,7 @@ import type { CSSProperties } from 'react';
 import { TransitionLink } from './TransitionLink';
 
 // ✏️ PEDRO: ALTERE OS ITENS DO MENU AQUI
-const links = [{ href: '/', label: 'HOME' }, { href: '/work', label: 'TRABALHOS' }, { href: '/contact', label: 'CONTACT' }, { href: '/quote', label: 'ORÇAMENTO' }];
+const links = [{ href: '/', label: 'HOME' }, { href: '/work', label: 'TRABALHOS' }, { href: '/lab/editor', label: 'IMAGE LAB' }, { href: '/contact', label: 'CONTACT' }, { href: '/quote', label: 'ORÇAMENTO' }];
 
 export function Navigation() {
   const path = usePathname();
