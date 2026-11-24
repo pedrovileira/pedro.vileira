@@ -66,6 +66,16 @@
   --title-letter-spacing: -0.045em;
 }
 
+/* IMAGE LAB */
+.title-lab {
+  --title-desktop: clamp(5rem, 17vw, 15rem);
+  --title-mobile: clamp(3.5rem, 16vw, 7rem);
+  --title-align: left;
+  --title-max-width: 100%;
+  --title-line-height: 0.76;
+  --title-letter-spacing: -0.085em;
+}
+
 /* ERRO 404 */
 .title-404 {
   --title-desktop: clamp(10rem, 25vw, 36rem);
@@ -78,7 +88,7 @@
 
 /* Não altere abaixo: aplica as configurações acima aos títulos */
 .title-home, .title-home-blocks, .title-about, .title-work,
-.title-contact, .title-quote, .title-404 {
+.title-contact, .title-quote, .title-lab, .title-404 {
   display: block;
   width: 100%;
   max-width: var(--title-max-width, 100%);
@@ -90,14 +100,18 @@
 
 @media (min-width: 768px) {
   .title-home, .title-home-blocks, .title-about, .title-work,
-  .title-contact, .title-quote, .title-404 {
+  .title-contact, .title-quote, .title-lab, .title-404 {
     font-size: var(--title-desktop);
   }
 }
 
 @media (max-width: 767px) {
   .title-home, .title-home-blocks, .title-about, .title-work,
-  .title-contact, .title-quote, .title-404 {
+  .title-contact, .title-quote, .title-lab, .title-404 {
     font-size: var(--title-mobile);
   }
 }
+
+/* IMAGE LAB — preserva as cores individuais do efeito Chaos Text. */
+.editor-title.title-lab .chaos__ch { color: inherit; }
+.editor-title.title-lab .tr__line:nth-child(2) .chaos__ch { color: var(--color-muted); }
