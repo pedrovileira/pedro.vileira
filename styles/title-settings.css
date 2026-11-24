@@ -1,117 +1,61 @@
-/*
-  PERSONALIZAÇÃO INDIVIDUAL DOS TÍTULOS — PEDRO
-  Edite somente os valores deste arquivo.
-  Tamanhos aceitam qualquer unidade CSS: rem, px, vw, clamp(), etc.
-  Alinhamento: left | center | right
-  Largura máxima: ex. 100%, 12ch, 900px
-*/
-
-/* HOME — nome principal */
-.title-home {
-  --title-desktop: clamp(2rem, 6vw, 8rem);
-  --title-mobile: clamp(4rem, 18vw, 8rem);
-  --title-align: center;
-  --title-max-width: 100%;
-  --title-line-height: 0.82;
-  --title-letter-spacing: -0.045em;
-}
-
-/* HOME — títulos dos blocos */
-.title-home-blocks {
-  --title-desktop: clamp(2.2rem, 4.8vw, 4.8rem);
- --title-mobile: clamp(2rem, 9vw, 4rem);
-  --title-align: left;
-  --title-max-width: 100%;
-  --title-line-height: 0.95;
-  --title-letter-spacing: -0.03em;
-}
-
-/* SOBRE */
-.title-about {
-  --title-desktop: clamp(3rem, 7vw, 7.5rem);
-  --title-mobile: clamp(2.2rem, 9vw, 4rem);
-  --title-align: left;
-  --title-max-width: 100%;
-  --title-line-height: 0.95;
-  --title-letter-spacing: -0.03em;
-}
-
-/* TRABALHOS */
-.title-work {
-  --title-desktop: clamp(3rem, 7vw, 7.5rem);
-  --title-mobile: clamp(2.2rem, 9vw, 4rem);
-  --title-align: left;
-  --title-max-width: 100%;
-  --title-line-height: 0.95;
-  --title-letter-spacing: -0.03em;
-}
-
-/* CONTATO */
-.title-contact {
-  --title-desktop: clamp(8rem, 19vw, 34rem);
-  --title-mobile: clamp(3.5rem, 15vw, 7rem);
-  --title-align: left;
-  --title-max-width: 100%;
-  --title-line-height: 0.82;
-  --title-letter-spacing: -0.045em;
-}
-
-/* ORÇAMENTO */
-.title-quote {
-  --title-desktop: clamp(6rem, 15vw, 24rem);
-  --title-mobile: clamp(3rem, 12vw, 6rem);
-  --title-align: left;
-  --title-max-width: 100%;
-  --title-line-height: 0.86;
-  --title-letter-spacing: -0.045em;
-}
-
-/* IMAGE LAB */
-.title-lab {
-  --title-desktop: clamp(5rem, 17vw, 15rem);
-  --title-mobile: clamp(3.5rem, 16vw, 7rem);
-  --title-align: left;
-  --title-max-width: 100%;
-  --title-line-height: 0.76;
-  --title-letter-spacing: -0.085em;
-}
-
-/* ERRO 404 */
+/* CONFIGURAÇÕES INDIVIDUAIS */
+.title-home,
+.title-home-blocks,
+.title-about,
+.title-work,
+.title-contact,
+.title-quote,
+.title-lab,
 .title-404 {
-  --title-desktop: clamp(10rem, 25vw, 36rem);
-  --title-mobile: clamp(6rem, 28vw, 12rem);
-  --title-align: center;
+  --title-align: left;
   --title-max-width: 100%;
-  --title-line-height: 0.8;
-  --title-letter-spacing: -0.05em;
-}
+  --title-line-height: 0.9;
+  --title-letter-spacing: -0.045em;
 
-/* Não altere abaixo: aplica as configurações acima aos títulos */
-.title-home, .title-home-blocks, .title-about, .title-work,
-.title-contact, .title-quote, .title-lab, .title-404 {
   display: block;
   width: 100%;
-  max-width: var(--title-max-width, 100%);
-  text-align: var(--title-align, left);
-  line-height: var(--title-line-height, 0.95);
-  letter-spacing: var(--title-letter-spacing, -0.03em);
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: var(--title-align);
+  line-height: var(--title-line-height);
+  letter-spacing: var(--title-letter-spacing);
   margin-inline: auto;
+  overflow-wrap: break-word;
 }
 
+/* DESKTOP */
 @media (min-width: 768px) {
-  .title-home, .title-home-blocks, .title-about, .title-work,
-  .title-contact, .title-quote, .title-lab, .title-404 {
-    font-size: var(--title-desktop);
+  .title-home,
+  .title-home-blocks,
+  .title-about,
+  .title-work,
+  .title-contact,
+  .title-quote,
+  .title-lab,
+  .title-404 {
+    font-size: clamp(2rem, 8vw, 15rem);
   }
 }
 
+/* CELULAR */
 @media (max-width: 767px) {
-  .title-home, .title-home-blocks, .title-about, .title-work,
-  .title-contact, .title-quote, .title-lab, .title-404 {
-    font-size: var(--title-mobile);
+  .title-home,
+  .title-home-blocks,
+  .title-about,
+  .title-work,
+  .title-contact,
+  .title-quote,
+  .title-lab,
+  .title-404 {
+    font-size: clamp(2rem, 13vw, 7rem);
   }
 }
 
-/* IMAGE LAB — preserva as cores individuais do efeito Chaos Text. */
-.editor-title.title-lab .chaos__ch { color: inherit; }
-.editor-title.title-lab .tr__line:nth-child(2) .chaos__ch { color: var(--color-muted); }
+/* IMAGE LAB — preserva as cores */
+.editor-title.title-lab .chaos__ch {
+  color: inherit;
+}
+
+.editor-title.title-lab .tr__line:nth-child(2) .chaos__ch {
+  color: var(--color-muted);
+}
