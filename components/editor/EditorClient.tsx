@@ -1,8 +1,9 @@
 'use client';
 
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { upload } from '@vercel/blob/client';
 import JSZip from 'jszip';
+import { ChaosText } from '@/components/ContactHeroTitle';
 
 type ImageStatus = 'ready' | 'uploading' | 'processing' | 'done' | 'error';
 type EditorImage = {
@@ -46,6 +47,11 @@ export function EditorClient() {
   const [isDragging, setIsDragging] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isZipping, setIsZipping] = useState(false);
+  const [password, setPassword] = useState('');
+  const [configured, setConfigured] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [loginError, setLoginError] = useState('');
   const [notice, setNotice] = useState('');
 
   const completedCount = useMemo(() => images.filter((image) => image.status === 'done').length, [images]);
@@ -53,7 +59,19 @@ export function EditorClient() {
   const readyCount = useMemo(() => images.filter((image) => image.status === 'ready' || image.status === 'error').length, [images]);
   const progress = images.length ? Math.round((completedCount / images.length) * 100) : 0;
 
-
+  useEffect(() => {
+    let active = true;
+    fetch('/api/editor/auth', { cache: 'no-store' })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!active) return;
+        setConfigured(Boolean(data.configured));
+        setAuthenticated(Boolean(data.authenticated));
+      })
+      .catch(() => setLoginError('Não foi possível verificar o acesso.'))
+      .finally(() => { if (active) setAuthLoading(false); });
+    return () => { active = false; };
+  }, []);
 
   const addFiles = useCallback((fileList: FileList | File[]) => {
     const incoming = Array.from(fileList);
@@ -107,7 +125,28 @@ export function EditorClient() {
     setNotice('');
   };
 
+  const login = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setLoginError('');
+    try {
+      const response = await fetch('/api/editor/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Não foi possível entrar.');
+      setAuthenticated(true);
+      setPassword('');
+    } catch (error) {
+      setLoginError(error instanceof Error ? error.message : 'Falha na autenticação.');
+    }
+  };
 
+  const logout = async () => {
+    await fetch('/api/editor/auth', { method: 'DELETE' });
+    setAuthenticated(false);
+  };
 
   const processOne = async (image: EditorImage) => {
     setImages((current) => current.map((item) => item.id === image.id ? { ...item, status: 'uploading', error: undefined } : item));
@@ -191,7 +230,35 @@ export function EditorClient() {
     }
   };
 
+  if (authLoading) {
+    return <section className="editor-page"><div className="editor-loading">CARREGANDO IMAGE LAB<span>...</span></div></section>;
+  }
 
+  if (!configured || !authenticated) {
+    return (
+      <section className="editor-page">
+        <div className="editor-topline"><span>PV / CREATIVE TOOLS</span><span>01 — IMAGE LAB</span></div>
+        <div className="editor-auth-wrap">
+          <p className="editor-eyebrow">PEDRO VILEIRA / EXPERIMENTAL TOOL</p>
+          <ChaosText as="h1" lines={['IMAGE', 'LAB.']} className="editor-title title-lab" />
+          {!configured ? (
+            <div className="editor-auth-card">
+              <h2>Configuração necessária</h2>
+              <p>Antes de usar o editor, adicione as variáveis de ambiente descritas no arquivo <code>EDITOR_SETUP.md</code> e conecte um Vercel Blob ao projeto.</p>
+            </div>
+          ) : (
+            <form className="editor-auth-card" onSubmit={login}>
+              <label htmlFor="editor-password">ACESSO RESTRITO</label>
+              <input id="editor-password" type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Sua senha de acesso" required />
+              {loginError && <p className="editor-error">{loginError}</p>}
+              <button className="editor-button editor-button--light" type="submit">ENTRAR NO EDITOR <span>↗</span></button>
+            </form>
+          )}
+          <p className="editor-auth-foot">PRIVATE WORKSPACE · POWERED BY GEMINI</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="editor-page">
@@ -200,7 +267,7 @@ export function EditorClient() {
       <header className="editor-hero">
         <div>
           <p className="editor-eyebrow">PEDRO VILEIRA / EXPERIMENTAL TOOL</p>
-          <h1 className="editor-title">IMAGE<br /><span>LAB.</span></h1>
+          <ChaosText as="h1" lines={['IMAGE', 'LAB.']} className="editor-title title-lab" />
         </div>
         <div className="editor-intro">
           <p>Uma direção. Várias imagens. Cada fotografia, uma edição independente.</p>
@@ -286,7 +353,7 @@ export function EditorClient() {
         </section>
       )}
 
-      <footer className="editor-footnote"><span>PUBLIC CREATIVE TOOL / PEDRO VILEIRA</span><span>ORIGINAL FILES ARE DELETED AFTER PROCESSING</span></footer>
+      <footer className="editor-footnote"><span>PRIVATE CREATIVE TOOL / PEDRO VILEIRA</span><span>ORIGINAL FILES ARE DELETED AFTER PROCESSING</span><button type="button" onClick={logout}>SAIR DO EDITOR ↗</button></footer>
     </section>
   );
 }
