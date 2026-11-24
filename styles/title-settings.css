@@ -8,9 +8,9 @@
 
 /* HOME — nome principal */
 .title-home {
-  --title-desktop: clamp(8rem, 19vw, 34rem);
+  --title-desktop: clamp(2rem, 6vw, 8rem);
   --title-mobile: clamp(4rem, 18vw, 8rem);
-  --title-align: left;
+  --title-align: center;
   --title-max-width: 100%;
   --title-line-height: 0.82;
   --title-letter-spacing: -0.045em;
@@ -19,7 +19,7 @@
 /* HOME — títulos dos blocos */
 .title-home-blocks {
   --title-desktop: clamp(2.2rem, 4.8vw, 4.8rem);
-  --title-mobile: clamp(2rem, 9vw, 3.5rem);
+ --title-mobile: clamp(2rem, 9vw, 4rem);
   --title-align: left;
   --title-max-width: 100%;
   --title-line-height: 0.95;
