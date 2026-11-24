@@ -115,18 +115,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     color var(--dur-fast) var(--ease),
     transform var(--dur-fast) var(--ease);
 
-  /* Cor sólida por tema, sem inverter as cores do conteúdo atrás */
-  mix-blend-mode: normal;
+  /* Inverte visualmente as cores do fundo */
+  mix-blend-mode: difference;
 }
 
-/* Cursor branco no tema escuro e preto no tema claro */
-.cursor__dot {
+/* Mantém o cursor independente do tema */
+html[data-theme='light'] .cursor__dot,
+html:not([data-theme='light']) .cursor__dot {
   background: #fff;
-  color: #060606;
-}
-:root[data-theme='light'] .cursor__dot {
-  background: #060606;
-  color: #fff;
+  color: #000;
 }
 
 /* Estados especiais */
@@ -141,25 +138,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 
 /* ===== NAV / MENU ===== */
-.nav {
-  position: fixed;
-  inset: 0 0 auto 0;
-  z-index: var(--z-nav);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--margin);
-  color: var(--color-text);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.08em;
-  font-weight: 600;
-
-  /* Efeito vidro: desfoca o conteúdo que passa por trás da barra */
-  background: color-mix(in srgb, var(--color-background) 78%, transparent);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid var(--color-line);
-}
+.nav { position: fixed; inset: 0 0 auto 0; z-index: var(--z-nav); display: flex; justify-content: space-between; align-items: center; padding: var(--margin); mix-blend-mode: difference; color: #fff; font-size: var(--fs-micro); letter-spacing: 0.08em; font-weight: 600; }
 .nav__links { display: none; gap: var(--sp-3); }
 .nav a[aria-current='page']::after { content: ''; display: inline-block; width: 6px; height: 6px; margin-left: 8px; border-radius: 50%; background: currentColor; }
 .nav__btn { font-size: inherit; letter-spacing: inherit; font-weight: inherit; }
@@ -413,3 +392,68 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   align-items: center;
 }
 
+
+.footer__name {
+  grid-column: 2 / span 8;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .footer__name {
+    grid-column: 1 / -1;
+    margin-left: 24px;
+    width: fit-content;
+  }
+}
+
+/* ===== RESPONSIVIDADE DE TITULOS E PALAVRAS ===== */
+:root {
+  /* Evita títulos gigantes em monitores largos e mantém escala fluida. */
+  --fs-headline: clamp(2rem, 5.5vw, 6rem);
+  --fs-display: clamp(2.5rem, 11vw, 14rem);
+}
+
+.t-display,
+.t-headline,
+.hblock__title,
+.card__title {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Permite que palavras longas quebrem linha quando não houver espaço,
+   em vez de ultrapassarem a largura da tela. */
+.chaos__w {
+  display: inline;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+
+/* Ajuste específico dos títulos de encerramento, que tinham escala própria. */
+.closing .t-display {
+  font-size: clamp(2.25rem, 10vw, 12rem);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --fs-headline: clamp(1.8rem, 8vw, 3.5rem);
+    --fs-display: clamp(2.25rem, 13vw, 5rem);
+  }
+
+  .t-display {
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+  }
+
+  .closing .t-display {
+    font-size: clamp(2.1rem, 11vw, 4.5rem);
+  }
+}
