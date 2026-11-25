@@ -18,7 +18,7 @@ export function Navigation() {
   }, [open]);
   return (
     <>
-      <header className="nav">
+      <header className="nav nav--float">
         <TransitionLink href="/" className="nav__logo" label="PEDRO VILEIRA" onNavigate={() => setOpen(false)} aria-label="Pedro Vileira — Home">PV</TransitionLink>
         <nav aria-label="Main" className="nav__links">
           {links.map((l) => (
