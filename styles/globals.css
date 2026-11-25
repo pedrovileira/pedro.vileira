@@ -597,3 +597,20 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 :root[data-theme='light'] .editor-dropzone:hover,
 :root[data-theme='light'] .editor-dropzone.is-dragging { background: color-mix(in srgb, var(--color-accent) 5%, white); }
+
+  /* BARRA SUPERIOR FLUTUANTE */
+.nav.nav--float {
+  inset: var(--sp-2) var(--margin) auto var(--margin);
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 32px -14px rgba(0, 0, 0, 0.45);
+  transition: background-color var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+
+:root[data-theme='light'] .nav.nav--float {
+  border-color: rgba(6, 6, 6, 0.12);
+  box-shadow: 0 10px 32px -14px rgba(0, 0, 0, 0.18);
+}
