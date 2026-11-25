@@ -616,8 +616,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 
-/* ===== NAVEGAÇÃO — BARRA COMPLETA EM TODAS AS TELAS ===== */
+/* ===== NAVEGAÇÃO — DESKTOP E MOBILE ===== */
 
+/* Barra superior flutuante */
 .nav {
   position: fixed;
   inset: var(--sp-2) var(--margin) auto;
@@ -631,6 +632,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: var(--color-text);
   background: rgba(6, 6, 6, 0.82);
   border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 32px -14px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -641,11 +644,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   letter-spacing: -0.04em;
 }
 
+/* Links completos aparecem apenas no computador */
 .nav__links {
-  display: flex !important;
+  display: none;
   align-items: center;
   justify-content: flex-end;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: clamp(0.6rem, 2vw, 2rem);
   margin-left: auto;
 }
@@ -661,29 +665,39 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   opacity: 0.55;
 }
 
-.nav__btn,
-.menu {
-  display: none !important;
+/* Botão MENU original aparece no celular */
+.nav__btn {
+  display: block;
+  flex-shrink: 0;
+  font-size: inherit;
+  letter-spacing: inherit;
+  font-weight: inherit;
 }
 
-/* Celular */
+/* Computador */
+@media (min-width: 768px) {
+  .nav__links {
+    display: flex;
+  }
+
+  .nav__btn,
+  .menu {
+    display: none;
+  }
+}
+
+/* Ajustes da barra no celular */
 @media (max-width: 767px) {
   .nav {
     gap: 0.7rem;
     padding: 0.75rem 0.85rem;
-  }
-
-  .nav__links {
-    gap: 0.55rem;
-  }
-
-  .nav__links a {
-    font-size: 0.55rem;
-    letter-spacing: 0.02em;
   }
 }
 
 /* Tema claro */
 :root[data-theme='light'] .nav {
   background: rgba(255, 255, 255, 0.82);
+  color: #060606;
+  border-color: rgba(6, 6, 6, 0.12);
+  box-shadow: 0 10px 32px -14px rgba(0, 0, 0, 0.18);
 }
